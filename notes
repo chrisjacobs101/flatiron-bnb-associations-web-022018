@@ -1,0 +1,44 @@
+City
+  name
+  has_many neighborhoods
+  has_many Listings through Neighborhoods
+
+Neighborhood
+    name
+    city
+
+User
+  name
+  has_many trips? (which are reservations?)
+    has_many :trips, :foreign_key => 'reservation_id' ????????
+    has_many :trips, :foreign_key => reservation      ????????
+
+  has_many reviews
+  has_many :listings, :foreign_key => 'host_id' ???????
+
+
+Listing
+  address
+  listing_type
+  title
+  description
+  price: float?
+  neighborhood belongs_to?  Neighborhood
+  host  belongs_to?         User
+    belongs_to :host, :class_name => "User" ??????????
+
+
+
+Reservation
+  checkin     stringOrSomethingElse? appearString
+  checkout    stringOrSomethingElse? appearString
+  listing belongs_to? Listing
+  guest   belongs_to? User
+    belongs_to :guest, :class_name => "User" ??????????
+
+  Review
+    description
+    rating:integer?
+    guest       belongs_to? User
+      belongs_to :guest, :class_name => "User" ??????????
+    reservation belongs_to? Reservation
